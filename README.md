@@ -1,6 +1,6 @@
 # argilla-cookbook
 
-This repository contains simple examples using Argilla tools to build AI. 
+This repository contains simple examples using Argilla tools to build AI.
 
 ## Retrieval Augmented Generation (RAG) with Argilla
 
@@ -15,3 +15,12 @@ These examples demonstrate the use of Argilla tools for retrieval-augmented gene
 | **multihop_langchain_frames_benchmark.ipynb** | This notebook benchmarks multi-hop reasoning using LangChain with frame-based models, leveraging the **Google Frames Benchmark** dataset. It evaluates multi-step query resolution tasks, using **Argilla** to review and improve model outputs.                            |
 | **rag_monitor_llamaindex.ipynb**        | This notebook demonstrates the use of retrieval-augmented generation (RAG) with LlamaIndex for monitoring and optimizing the retrieval process. It focuses on improving retrieval accuracy and model performance in question-answering tasks. |
 | **rag_benchmark_compare_llms_ragas_haystack.ipynb**        | This notebook demonstrates how to benchmark and compare large language models (LLMs) in a Retrieval-Augmented Generation (RAG) pipeline using **Haystack** for RAG, **Ragas** for evaluation, and **Argilla** for monitoring. It guides users through setting up a RAG pipeline with the **PubMedQA_instruction** dataset, comparing two LLMs (Microsoft's Phi-3.5-mini-instruct and Meta's Llama-3.1-8B-Instruct), and evaluating performance based on metrics like faithfulness, relevancy, and correctness. Results are logged and analyzed in Argilla to identify the best-performing LLM. Alternatives for RAG and evaluation tools are also suggested.. |
+
+## Labeling Datasets in Argilla
+
+These examples demonstrate the use of tools for labeling in Argilla dataset. The notebooks showcase the simple ways of using Argilla to label datasets with LLMs.
+
+| Notebook                               | Description                                                                                                                                                                                                                              |
+|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **label_datasets_with_llms_annotation_guidelines_and_distilabel.ipynb** | This notebook demonstrates how to label datasets with LLMs using Argilla based on the written fields, questions and annotation guidelines. It uses the `ArgillaLabeller` class from `distilabel` library. This class will use  will use an LLM to label the datasets. These labels will then be converted into `rg.Suggestion` objects and added to the records. |
+
