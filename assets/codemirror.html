@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Online Interpreter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+    <style>
+        #run-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #run-button:hover {
+            background-color: #45a049;
+        }
+        #consoleOutput {
+            height: 100px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 5px;
+            background-color: #f8f8f8;
+            color: #000;
+            font-family: monospace;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/python/python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div ref="editorContainer"></div>
+        <button id="run-button" @click="runCode">Run</button>
+        <div id="consoleOutput"></div>
+    </div>
+
+    <script>
+        const { createApp, ref, onMounted } = Vue;
+
+        createApp({
+            setup() {
+                const editor = ref(null);
+                const pyodide = ref(null);
+
+                const runCode = async () => {
+                    if (!pyodide.value) return;
+                    const code = editor.value.getValue();
+                    try {
+                        pyodide.value.runPython(`
+                            import io, sys
+                            sys.stdout = io.StringIO()
+                        `);
+                        await pyodide.value.runPythonAsync(code);
+                        const stdout = pyodide.value.runPython("sys.stdout.getvalue()");
+                        console.log(stdout);
+                    } catch (error) {
+                        console.log(`Error: ${error}`);
+                    }
+                };
+
+                const overrideConsoleLog = () => {
+                    const oldConsoleLog = console.log;
+                    console.log = function(message) {
+                        const consoleOutput = document.getElementById('consoleOutput');
+                        if (consoleOutput) {
+                            consoleOutput.textContent = message;
+                            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+                        }
+                        oldConsoleLog.apply(console, arguments);
+                    };
+                };
+
+                onMounted(async () => {
+                    editor.value = CodeMirror(document.querySelector('#app div'), {
+                        lineNumbers: true,
+                        mode: 'python',
+                        theme: 'monokai',
+                        value: record.fields.code.value,
+                    });
+
+                    editor.value.on('keydown', (cm, event) => {
+                        if (event.ctrlKey && event.key === 'Enter') {
+                            event.preventDefault();
+                            runCode();
+                        }
+                    });
+
+                    pyodide.value = await loadPyodide();
+                    overrideConsoleLog();
+                });
+
+                return { runCode };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
