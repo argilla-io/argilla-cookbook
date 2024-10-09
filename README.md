@@ -6,8 +6,6 @@ This repository contains simple examples using Argilla tools to build AI.
 
 These examples demonstrate the use of Argilla tools for retrieval-augmented generation (RAG) tasks. The notebooks showcase the simple ways of using Argilla to improve retrieval accuracy and model performance in question-answering tasks.
 
-
-
 | Notebook                               | Description                                                                                                                                                                                                                              |
 |----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [dspy_agent_arxiv_tools_prompt_optimization.ipynb](./dspy_agent_arxiv_tools_prompt_optimization.ipynb) | This notebook, titled **"ArXiv Tools for Prompt Optimization"**, is designed to assist in optimizing and refining prompts for use in agentic applications. It includes tools for prompt evaluation, benchmarking, and iterative improvement, using arXiv datasets and models. |
@@ -23,4 +21,3 @@ These examples demonstrate the use of tools for labeling in Argilla dataset. The
 | Notebook                               | Description                                                                                                                                                                                                                              |
 |----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [label_datasets_with_llms_annotation_guidelines_and_distilabel.ipynb](./label_datasets_with_llms_annotation_guidelines_and_distilabel.ipynb) | This notebook demonstrates how to label datasets with LLMs using Argilla based on the written fields, questions and annotation guidelines. It uses the `ArgillaLabeller` class from `distilabel` library. This class will use  will use an LLM to label the datasets. These labels will then be converted into `rg.Suggestion` objects and added to the records. |
-

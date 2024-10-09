@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Zoom and Pan Gallery</title>
+
+    <!-- PhotoSwipe CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css">
+    
+    <!-- Minimal custom styling -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .gallery-item {
+            width: 150px;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Gallery -->
+    <div class="gallery">
+        <a href="https://via.placeholder.com/1200x800" class="gallery-item" data-pswp-width="1200" data-pswp-height="800">
+            <img src="https://via.placeholder.com/150x100" alt="Image 1">
+        </a>
+        <a href="https://via.placeholder.com/1200x800" class="gallery-item" data-pswp-width="1200" data-pswp-height="800">
+            <img src="https://via.placeholder.com/150x100" alt="Image 2">
+        </a>
+        <a href="https://via.placeholder.com/1200x800" class="gallery-item" data-pswp-width="1200" data-pswp-height="800">
+            <img src="https://via.placeholder.com/150x100" alt="Image 3">
+        </a>
+    </div>
+
+    <!-- PhotoSwipe HTML structure -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                </div>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PhotoSwipe JS (via CDN) -->
+    <script src="https://unpkg.com/photoswipe@5/dist/photoswipe.umd.min.js"></script>
+
+    <!-- Gallery Initialization Script -->
+    <script>
+        const pswpElement = document.querySelectorAll('.pswp')[0];
+
+        const galleryItems = Array.from(document.querySelectorAll('.gallery-item')).map(item => {
+            return {
+                src: item.getAttribute('href'),
+                w: item.getAttribute('data-pswp-width'),
+                h: item.getAttribute('data-pswp-height'),
+                el: item // This stores the element to calculate thumbnail bounding box
+            };
+        });
+
+        const openGallery = (index) => {
+            const options = {
+                index: index, // Start at clicked image
+                getThumbBoundsFn: (idx) => {
+                    const thumbnail = galleryItems[idx].el.querySelector('img'),
+                          pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                          rect = thumbnail.getBoundingClientRect();
+                    return {x: rect.left, y: rect.top + pageYScroll, w: rect.width};
+                }
+            };
+
+            const gallery = new PhotoSwipe(pswpElement, PhotoSwipe.UI_Default, galleryItems, options);
+            gallery.init();
+        };
+
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                openGallery(index);
+            });
+        });
+    </script>
+
+</body>
+</html>
