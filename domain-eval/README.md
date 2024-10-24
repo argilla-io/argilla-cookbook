@@ -64,15 +64,9 @@ This will push the dataset to the Hugging Face Hub under the specified repositor
 
 ### 4. Evaluation Task
 
-The `evaluation_task.py` script defines a custom LightEval task for evaluating language models on the exam questions dataset. It includes a prompt function, a custom accuracy metric, and the task configuration. You can find detailed guides in lighteval wiki about each of these steps: 
+The `evaluation_task.py` script defines a custom LightEval task for evaluating language models on the exam questions dataset. It includes a prompt function, a custom accuracy metric, and the task configuration. 
 
-- [Creating a Custom Task](https://github.com/huggingface/lighteval/wiki/Adding-a-Custom-Task)
-- [Creating a Custom Metric](https://github.com/huggingface/lighteval/wiki/Adding-a-New-Metric)
-- [Using existing metrics](https://github.com/huggingface/lighteval/wiki/Metric-List)
-
-## Running the Evaluation
-
-To evaluate a model using LightEval with the custom exam questions task:
+To evaluate a model using lighteval with the custom exam questions task:
 
 ```sh
 lighteval accelerate \
@@ -82,20 +76,15 @@ lighteval accelerate \
     --output_dir "./evals"
 ```
 
-This command will evaluate the specified model on the exam questions task and save the results in the "./evals" directory.
+You can find detailed guides in lighteval wiki about each of these steps: 
+
+- [Creating a Custom Task](https://github.com/huggingface/lighteval/wiki/Adding-a-Custom-Task)
+- [Creating a Custom Metric](https://github.com/huggingface/lighteval/wiki/Adding-a-New-Metric)
+- [Using existing metrics](https://github.com/huggingface/lighteval/wiki/Metric-List)
 
 ## Requirements
 
-This tutorial requires the following dependencies:
-
-- Python 3.9+
-- Distilabel
-- Argilla
-- Datasets
-- LightEval
-- Hugging Face Hub
-
-You can install the required packages using the following command:
+This tutorial requires dependencies which you can install using the following command:
 
 ```sh
 pip install -r requirements.txt
