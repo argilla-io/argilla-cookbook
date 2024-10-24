@@ -45,19 +45,20 @@ python annotate_dataset.py --dataset_path path/to/distiset --output_dataset_name
 
 This will create an Argilla dataset that can be used for manual review and annotation.
 
-![argilla_dataset]([./images/argilla_dataset.png](https://github.com/argilla-io/argilla-cookbook/blob/project/domain-eval/images/domain_eval_argilla_view.png))
+![argilla_dataset](../images/domain_eval_argilla_view.png)
 
 ### 3. Create Dataset
 
 The `create_dataset.py` script processes the annotated data from Argilla and creates a Hugging Face dataset. It handles both suggested and manually annotated answers. The script will create a dataset with the question, possible answers, and the column name for the correct answer. Which looks like this:
 
+<html>
 <iframe
   src="https://huggingface.co/datasets/burtenshaw/exam_questions/embed/viewer/default/train"
   frameborder="0"
   width="100%"
   height="560px"
 ></iframe>
-
+</html>
 To create the final dataset:
 
 ```sh
