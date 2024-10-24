@@ -45,6 +45,8 @@ python annotate_dataset.py --dataset_path path/to/distiset --output_dataset_name
 
 This will create an Argilla dataset that can be used for manual review and annotation.
 
+![argilla_dataset]([./images/argilla_dataset.png](https://github.com/argilla-io/argilla-cookbook/blob/project/domain-eval/images/domain_eval_argilla_view.png))
+
 ### 3. Create Dataset
 
 The `create_dataset.py` script processes the annotated data from Argilla and creates a Hugging Face dataset. It handles both suggested and manually annotated answers. The script will create a dataset with the question, possible answers, and the column name for the correct answer. Which looks like this:
@@ -67,7 +69,11 @@ This will push the dataset to the Hugging Face Hub under the specified repositor
 
 ### 4. Evaluation Task
 
-The `evaluation_task.py` script defines a custom LightEval task for evaluating language models on the exam questions dataset. It includes a prompt function, a custom accuracy metric, and the task configuration.
+The `evaluation_task.py` script defines a custom LightEval task for evaluating language models on the exam questions dataset. It includes a prompt function, a custom accuracy metric, and the task configuration. You can find detailed guides in lighteval wiki about each of these steps: 
+
+- [Creating a Custom Task](https://github.com/huggingface/lighteval/wiki/Adding-a-Custom-Task)
+- [Creating a Custom Metric](https://github.com/huggingface/lighteval/wiki/Adding-a-New-Metric)
+- [Using existing metrics](https://github.com/huggingface/lighteval/wiki/Metric-List)
 
 ## Running the Evaluation
 
@@ -103,7 +109,7 @@ pip install -r requirements.txt
 ## Notes
 
 - Ensure you have the necessary API keys and permissions set up for Hugging Face, Argilla, and any other services used in the scripts.
-- The generation step uses the specified model (default: Meta-Llama-3.1-8B-Instruct), which may require appropriate access and API keys.
+- The generation step uses the specified model (default: Qwen/Qwen2.5-7B-Instruct), which may require appropriate access and API keys.
 - Set the `HF_TOKEN` environment variable with your Hugging Face API token before running the generation script.
 - Review and adjust the Argilla server settings in the annotation script if needed.
 - Make sure to handle any sensitive information (like API keys) securely and not expose them in your code or version control.

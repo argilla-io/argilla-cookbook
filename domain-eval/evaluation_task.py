@@ -34,7 +34,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 ################################################################################
-# Define the prompt function
+# Define the prompt function based on the structure of the dataset
 ################################################################################
 
 
@@ -57,8 +57,9 @@ def prompt_fn(line, task_name: str = None):
 
 
 ################################################################################
-# Define the custom metric https://github.com/huggingface/lighteval/wiki/Adding-a-New-Metric
-# Or use an existing metric from lighteval.metrics.metrics. For example:
+# Define the custom metric based on guide here https://github.com/huggingface/lighteval/wiki/Adding-a-New-Metric
+# Or use an existing metric based on the guide here: https://github.com/huggingface/lighteval/wiki/Metric-List
+# Existing metrics can be imported from lighteval.metrics.metrics
 ################################################################################
 
 custom_metric = SampleLevelMetric(
@@ -71,7 +72,8 @@ custom_metric = SampleLevelMetric(
 )
 
 ################################################################################
-# Define the task
+# Define the task based on the prompt function and the custom metric
+# Based on the guide here: https://github.com/huggingface/lighteval/wiki/Adding-a-Custom-Task
 ################################################################################
 
 task = LightevalTaskConfig(
