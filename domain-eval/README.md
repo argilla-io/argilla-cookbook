@@ -7,8 +7,8 @@ What should you do if you need to evaluate a model on a **custom domain** releva
 This tutorial shows you the full pipeline you can follow, from creating relevant data and annotating your samples to evaluating your model on them, with the easy to use [Argilla](https://github.com/argilla-io/argilla), [distilabel](https://github.com/argilla-io/distilabel), and [lighteval](https://github.com/huggingface/lighteval). For our example, we'll focus on generating exam questions from multiple documents. 
 
 ## Project Structure
+
 For our process, we will follow 4 steps, with a script for each: generating a dataset, annotating it, extracting relevant samples for evaluation from it, and actually evaluating models.
-The tutorial includes the following scripts for each step of the process:
 
 | Script Name | Description |
 |-------------|-------------|
