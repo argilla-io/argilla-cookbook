@@ -60,10 +60,7 @@ python create_dataset.py --dataset_path argilla_dataset_name --dataset_repo_id y
 
 This will push the dataset to the Hugging Face Hub under the specified repository. You can view the sample dataset on the hub [here](https://huggingface.co/datasets/burtenshaw/exam_questions/viewer/default/train), and a preview of the dataset looks like this:
 
-| Question | Answer A | Answer B | Answer C | Answer D | Correct Answer |
-|----------|----------|----------|----------|----------|----------------|
-| What is transfer learning? | A type of neural network architecture | A technique in machine learning ... | A method for data preprocessing | A software architecture | answer_b |
-| In which year did Bozinovski and Fulgosi publish a paper addressing transfer learning in neural network training? | 1998 | 1994 | 1992 | 1976 | answer_c |
+![hf_dataset](../images/domain_eval_dataset_viewer.png)
 
 ### 4. Evaluation Task
 
