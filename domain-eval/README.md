@@ -1,25 +1,27 @@
 # Domain Specific Evaluation with Argilla, Distilabel, and LightEval
 
-This project demonstrates the creation, annotation, and evaluation of a model on a domain specific task using Argilla, distilabel, and Lighteval. The process involves generating exam questions from multiple documents, annotating them, creating a dataset, and evaluating language models on the task.
+Most popular benchmarks look at very general capabilities (reasoning, math, code), but have you ever needed to study more specific capabilities? 
 
-This process is useful if you're applying language models to custom domains, and want to evaluate them on a task that is specific to that domain. Even if you're not fine-tuning models on this task, you can still use this process to evaluate how well they perform on your domain-specific task.
+What should you do if you need to evaluate a model on a **custom domain** relevant to your use-cases? (For example, financial, legal, medical use cases)  
+
+This tutorial shows you the full pipeline you can follow, from creating relevant data and annotating your samples to evaluating your model on them, with the easy to use [Argilla](https://github.com/argilla-io/argilla), [distilabel](https://github.com/argilla-io/distilabel), and [lighteval](https://github.com/huggingface/lighteval). For our example, we'll focus on generating exam questions from multiple documents. 
 
 ## Project Structure
 
-```
-domain-eval/
-├── README.md
-├── generate_dataset.py
-├── annotate_dataset.py
-├── create_dataset.py
-├── evaluation_task.py
-```
+The tutorial includes the following scripts for each step of the process:
+
+| Script Name | Description |
+|-------------|-------------|
+| generate_dataset.py | Generates exam questions from multiple text documents using a specified language model. |
+| annotate_dataset.py | Creates an Argilla dataset for manual annotation of the generated exam questions. |
+| create_dataset.py | Processes annotated data from Argilla and creates a Hugging Face dataset. |
+| evaluation_task.py | Defines a custom LightEval task for evaluating language models on the exam questions dataset. |
 
 ## Steps
 
 ### 1. Generate Dataset
 
-The `generate_dataset.py` script uses the distilabel library to generate exam questions based on multiple text documents. It uses the specified model (default: Meta-Llama-3.1-8B-Instruct) to create questions, correct answers, and distractors. You should add you own data samples and you might wish to use a different model.
+The `generate_dataset.py` script uses the distilabel library to generate exam questions based on multiple text documents. It uses the specified model (default: Meta-Llama-3.1-8B-Instruct) to create questions, correct answers, and incrorect answers (known as distractors). You should add you own data samples and you might wish to use a different model.
 
 To run the generation:
 
@@ -27,11 +29,13 @@ To run the generation:
 python generate_dataset.py --input_dir path/to/your/documents --model_id your_model_id --output_path output_directory
 ```
 
-This will create a Distiset containing the generated exam questions for all documents in the input directory.
+This will create a [Distiset](https://distilabel.argilla.io/dev/sections/how_to_guides/advanced/distiset/) containing the generated exam questions for all documents in the input directory. 
 
 ### 2. Annotate Dataset
 
-The `annotate_dataset.py` script takes the generated questions and creates an Argilla dataset for annotation. It sets up the dataset structure and populates it with the generated questions and answers, randomizing the order of answers to avoid bias. Once in Argilla, your or a domain expert can annotate the dataset with the correct answer.
+The `annotate_dataset.py` script takes the generated questions and creates an Argilla dataset for annotation. It sets up the dataset structure and populates it with the generated questions and answers, randomizing the order of answers to avoid bias. Once in Argilla, you or a domain expert can validate the dataset with the correct answers.
+
+You will see suggested correct answers from the LLM in random order and you can approve the correct answer or select a different one. The duration of this process will depend on the scale of your evaluation dataset, the complexity of your domain data, and the quality of your LLM. For example, we were able to create 150 samples within 1 hour on the domain of transfer learning, using Llama-3.1-70B-Instruct, mostly by approving the correct answer and discarding the incorrect ones.
 
 To run the annotation process:
 
@@ -43,11 +47,19 @@ This will create an Argilla dataset that can be used for manual review and annot
 
 ### 3. Create Dataset
 
-The `create_dataset.py` script processes the annotated data from Argilla and creates a Hugging Face dataset. It handles both suggested and manually annotated answers. 
+The `create_dataset.py` script processes the annotated data from Argilla and creates a Hugging Face dataset. It handles both suggested and manually annotated answers. The script will create a dataset with the question, possible answers, and the column name for the correct answer. Which looks like this:
+
+<iframe
+  src="https://huggingface.co/datasets/burtenshaw/exam_questions/embed/viewer/default/train"
+  frameborder="0"
+  width="100%"
+  height="560px"
+></iframe>
 
 To create the final dataset:
 
 ```sh
+huggingface_hub login
 python create_dataset.py --dataset_path argilla_dataset_name --dataset_repo_id your_hf_repo_id
 ```
 
@@ -73,14 +85,20 @@ This command will evaluate the specified model on the exam questions task and sa
 
 ## Requirements
 
+This tutorial requires the following dependencies:
+
 - Python 3.9+
 - Distilabel
 - Argilla
 - Datasets
 - LightEval
-- Hugging Face Transformers
+- Hugging Face Hub
 
-Make sure to install the required dependencies before running the scripts.
+You can install the required packages using the following command:
+
+```sh
+pip install -r requirements.txt
+```
 
 ## Notes
 
