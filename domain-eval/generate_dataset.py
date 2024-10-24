@@ -18,13 +18,13 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     "--model_id",
     type=str,
-    default="meta-llama/Meta-Llama-3.1-8B-Instruct",
+    default="Qwen/Qwen2.5-7B-Instruct",
     help="Model ID for text generation",
 )
 parser.add_argument(
     "--tokenizer_id",
     type=str,
-    default="meta-llama/Meta-Llama-3.1-8B-Instruct",
+    default="Qwen/Qwen2.5-7B-Instruct",
     help="Tokenizer ID for text generation",
 )
 parser.add_argument(
