@@ -49,26 +49,19 @@ This will create an Argilla dataset that can be used for manual review and annot
 
 ### 3. Create Dataset
 
-The `create_dataset.py` script processes the annotated data from Argilla and creates a Hugging Face dataset. It handles both suggested and manually annotated answers. The script will create a dataset with the question, possible answers, and the column name for the correct answer. Which looks like this:
-
-<html>
-<iframe
-  src="https://huggingface.co/datasets/burtenshaw/exam_questions/embed/viewer/default/train"
-  frameborder="0"
-  width="100%"
-  height="560px"
-></iframe>
-</html>
-
-
-To create the final dataset:
+The `create_dataset.py` script processes the annotated data from Argilla and creates a Hugging Face dataset. It handles both suggested and manually annotated answers. The script will create a dataset with the question, possible answers, and the column name for the correct answer. To create the final dataset:
 
 ```sh
 huggingface_hub login
 python create_dataset.py --dataset_path argilla_dataset_name --dataset_repo_id your_hf_repo_id
 ```
 
-This will push the dataset to the Hugging Face Hub under the specified repository.
+This will push the dataset to the Hugging Face Hub under the specified repository. You can view the sample dataset on the hub [here](https://huggingface.co/datasets/burtenshaw/exam_questions/viewer/default/train), and a preview of the dataset looks like this:
+
+| Question | Answer A | Answer B | Answer C | Answer D | Correct Answer |
+|----------|----------|----------|----------|----------|----------------|
+| What is transfer learning? | A type of neural network architecture | A technique in machine learning ... | A method for data preprocessing | answer_b |
+| In which year did Bozinovski and Fulgosi publish a paper addressing transfer learning in neural network training? | 1998 | 1994 | 1992 | 1976 | answer_c |
 
 ### 4. Evaluation Task
 
