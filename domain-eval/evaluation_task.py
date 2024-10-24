@@ -57,7 +57,8 @@ def prompt_fn(line, task_name: str = None):
 
 
 ################################################################################
-# Define the custom metric
+# Define the custom metric https://github.com/huggingface/lighteval/wiki/Adding-a-New-Metric
+# Or use an existing metric from lighteval.metrics.metrics. For example:
 ################################################################################
 
 custom_metric = SampleLevelMetric(
