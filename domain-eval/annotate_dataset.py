@@ -1,5 +1,4 @@
 import argparse
-import os
 import json
 from random import choices, sample
 
