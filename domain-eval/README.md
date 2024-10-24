@@ -47,6 +47,8 @@ This will create an Argilla dataset that can be used for manual review and annot
 
 ![argilla_dataset](../images/domain_eval_argilla_view.png)
 
+If you're not using Argilla, deploy it locally or on spaces following this [quickstart guide](https://docs.argilla.io/latest/getting_started/quickstart/).
+
 ### 3. Create Dataset
 
 The `create_dataset.py` script processes the annotated data from Argilla and creates a Hugging Face dataset. It handles both suggested and manually annotated answers. The script will create a dataset with the question, possible answers, and the column name for the correct answer. To create the final dataset:
@@ -101,14 +103,6 @@ You can install the required packages using the following command:
 ```sh
 pip install -r requirements.txt
 ```
-
-## Notes
-
-- Ensure you have the necessary API keys and permissions set up for Hugging Face, Argilla, and any other services used in the scripts.
-- The generation step uses the specified model (default: Qwen/Qwen2.5-7B-Instruct), which may require appropriate access and API keys.
-- Set the `HF_TOKEN` environment variable with your Hugging Face API token before running the generation script.
-- Review and adjust the Argilla server settings in the annotation script if needed.
-- Make sure to handle any sensitive information (like API keys) securely and not expose them in your code or version control.
 
 ## Contributing
 
