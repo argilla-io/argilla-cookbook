@@ -85,7 +85,10 @@ In the AutoTrain UI, you can select the ORPO algorithm from the dropdown menu on
 
 ### Select the base model
 
-The Hugging Face Hub contains thousands of language models that we could use as a base model for fine-tuning. We will use the SmolLM2 model as a base because it's only 1.7 billion parameters which means it will run on a wide range of hardware. It's also performed well on general benchmarks so we can expect reasonable performance from it on a number of use cases.
+The Hugging Face Hub contains thousands of language models that we could use as a base model for fine-tuning. Many of them are evaluated on general benchmarks and can be used as a starting point for fine-tuning. To access benchmark scores for a model, you can use the [Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard).
+
+
+We will use the SmolLM2 model as a base because it's only 1.7 billion parameters which means it will run on a wide range of hardware. It's also performed well on general benchmarks so we can expect reasonable performance from it on a number of use cases.
 
 ![SmolLM2 image](../images/ui-finetune/smollm-2-cover.png)
 
