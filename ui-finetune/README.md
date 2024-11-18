@@ -48,7 +48,7 @@ python create_dataset.py \
 
 ## Fine-tune
 
-With a dataset on the hub, we can now fine-tune a language model using `autotrain-advanced`. We will use the `llm` command to fine-tune a language model on the dataset. 
+With a dataset on the hub, we can now fine-tune a language model using the autotrain UI. Alternatively, you can use the `autotrain-advanced` [library](https://github.com/huggingface/autotrain-advanced) to fine-tune a language model. Check that out if you want to fine-tune a model using CLI commands.
 
 ### Select the algorithm
 
