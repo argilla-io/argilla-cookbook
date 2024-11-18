@@ -50,22 +50,6 @@ python create_dataset.py \
 
 With a dataset on the hub, we can now fine-tune a language model using `autotrain-advanced`. We will use the `llm` command to fine-tune a language model on the dataset. 
 
-### Install the required libraries
-
-Before we can fine-tune the model, we need to install the required libraries. We will install `autotrain-advanced`, `datasets`, and `transformers`. We will also install the compatible versions of `torch`, `torchvision`, and `torchaudio`.
-
-```python
-# Uninstall existing torch, torchvision, and torchaudio
-pip uninstall torch torchvision torchaudio -y
-
-# Install compatible versions
-pip install torch==2.0.1+cu118 torchvision==0.15.2+cu118 torchaudio==2.0.2 --extra-index-url https://download.pytorch.org/whl/cu118
-
-# Install other required libraries
-pip install -U autotrain-advanced
-pip install -U datasets transformers
-```
-
 ### Select the algorithm
 
 There are countless fine-tuning algorithms for LLMs to chose from and many of the are supported by AutoTrain. We will work with the ORPO algorithm because it's simple to use and deliver significant improvements on base models. 
