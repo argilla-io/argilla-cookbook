@@ -58,6 +58,8 @@ ORPO (Online Reward Policy Optimization) is a streamlined fine-tuning technique 
 
 Developed by Hong and Lee in 2024, ORPO combines these processes by modifying the model’s objective function to include a loss term that rewards preferred responses while penalizing rejected ones. This approach has shown to outperform other alignment methods across different model sizes and tasks. ORPO’s efficiency and improved alignment make it a promising alternative in fine-tuning LLMs like Llama 3.
 
+In the AutoTrain UI, you can select the ORPO algorithm from the dropdown menu on the left. As shown in the image below, you can also adjust the hyperparameters for the algorithm.
+
 ### Select the base model
 
 The Hugging Face Hub contains thousands of language models that we could use as a base model for fine-tuning. We will use the SmolLM2 model as a base because it's only 1.7 billion parameters which means it will run on a wide range of hardware. It's also performed well on general benchmarks so we can expect reasonable performance from it on a number of use cases.
