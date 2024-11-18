@@ -25,9 +25,13 @@ The video below shows how to import the dataset into Argilla by pasting the data
 
 ![video](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/argilla-ui-hub/import_hub_dataset.mp4)
 
-The dataset configurator lets you define a feedback task in the UI based on the dataset that you're importing. In our case, we will use the default task, and add a question for relevance. This will allow us to filter the dataset based on categories or topics.
+
+
+Argilla will suggest a configuration based on the dataset. We can then add questions in the UI. In our case, we will use the default task, and add a rating question for relevance. This will allow us to filter the dataset based on categories or topics.
 
 ![alt text](../images/ui-finetune/argilla_config.png) 
+
+The dataset configurator lets you define a the fields and questions for review. The fields can be text, conversation, or images. The questions can labels, ratings, rankings, or text.  
 
 ### Filter the dataset
 
