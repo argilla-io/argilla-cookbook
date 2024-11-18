@@ -79,7 +79,7 @@ With a dataset on the hub, we can now fine-tune a language model using the autot
 
 ### Select the algorithm
 
-There are countless fine-tuning algorithms for LLMs to chose from and many of the are supported by AutoTrain. We will work with the ORPO algorithm because it's simple to use and deliver significant improvements on base models. 
+There are countless fine-tuning algorithms for LLMs to choose from, and many of them are supported by AutoTrain. We will work with the ORPO algorithm because it's simple to use and delivers significant improvements on base models. 
 
 ORPO (Online Reward Policy Optimization) is a streamlined fine-tuning technique that merges two stages—supervised fine-tuning (SFT) and preference alignment—into one. This integration reduces both the computational load and training time. Traditionally, fine-tuning large language models (LLMs) for specific tasks involves SFT to adapt the model’s domain knowledge and then preference alignment (such as RLHF or Direct Preference Optimization) to prioritize preferred responses over undesirable ones. ORPO addresses an issue in the traditional method where SFT inadvertently increases the probability of both desirable and undesirable outputs, necessitating an additional alignment phase.
 
