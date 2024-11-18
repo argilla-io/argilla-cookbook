@@ -143,8 +143,6 @@ To begin, start off with the default parameters and adjust them as needed. Below
 
 You can now evaluate your trained model. Here we will use some general benchmarks which can help to determine whether our model's performance has changed compared to its previous training. 
 
-For a real-world use case, you would want to to evaluate your model on the task that you plan to use it for. In this guide on [custom evaluation](domain-eval/README.md) we show how to do that. 
-
 ```sh
 lighteval accelerate \
     --model_args "pretrained=HuggingFaceTB/SmolLM2-135M" \
@@ -152,3 +150,5 @@ lighteval accelerate \
     --override_batch_size 1 \
     --output_dir="./evals/"
 ```
+
+For a real-world use case, you would want to to evaluate your model on the task that you plan to use it for. In this guide on [custom evaluation](domain-eval/README.md) we show how to do that. 
