@@ -1,6 +1,6 @@
 # Low Code Language Model Fine-tuning
 
-In this tutorial we will fine-tune a language model without writing any complex code. We will use the `autotrain-advanced` library to fine-tune a small language model on a custom dataset. And we will use Argilla's UI to create and review the dataset. The tutorial will follow these core steps:
+In this tutorial we will fine-tune a language model without writing any complex code, and mainly using UI tools. We will use the `autotrain-advanced` library to fine-tune a small language model on a custom dataset. And we will use Argilla's UI to create and review the dataset. The tutorial will follow these core steps:
 
 1. Create a dataset using Argilla's UI
 2. Export the dataset to the hub
@@ -15,7 +15,7 @@ First we will create a dataset in Argilla based on an existing dataset. We will 
 
 We will work with Maxime Labonne's dataset of 40k samples with chosen and rejected completions. The dataset is available in the hub at `mlabonne/orpo-dpo-mix-40k`. Below is a preview of the dataset.
 
-![images/mlabonne-orpo-mix.png](images/mlabonne-orpo-mix.png)
+![images/mlabonne-orpo-mix.png](../images/mlabonne-orpo-mix.png)
 
 ### Importing the dataset into Argilla
 
@@ -33,7 +33,7 @@ The dataset configurator lets you define a feedback task in the UI based on the 
 
 After importing the dataset, we can filter it based on the relevance question we added. In our case, we will filter the dataset to only include completions that are relevant to the prompt. We will also filter the dataset to only include completions that are at least 10 tokens long.
 
-![Screen recording filtering the dataset down]()
+![filter dataset](../images/ui-finetune/filter_records.png)
 
 ## Export the dataset to the Hub
 
