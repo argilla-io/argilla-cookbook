@@ -39,11 +39,34 @@ After importing the dataset, we can filter it based on the relevance question we
 
 After filtering the dataset, we can export it to the hub. This will allow us to access the dataset in AutoTrain. Unfortunately, the export feature is not yet available in the UI, so we will have to use the python library to export the dataset.
 
-```bash
-huggingface_hub login
-python create_dataset.py \
-            --dataset_path argilla_dataset_name \
-            --dataset_repo_id your_hf_repo_id
+```python
+import argilla as rg
+from datasets import Dataset
+
+client = rg.Argilla(api_key="<argilla_api_key>", api_url="<argilla_api_url>")
+dataset = client.datasets("dataset_path")
+
+# Process Argilla records by dealing with multiple responses
+
+dataset_rows = []
+
+for record in dataset.records(with_suggestions=True, with_responses=True):
+    row = record.fields
+
+    if len(record.responses) == 0:
+        answer = record.suggestions["correct_answer"].value
+        row["correct_answer"] = answer
+    else:
+        for response in record.responses:
+            if response.question_name == "correct_answer":
+                row["correct_answer"] = response.value
+                
+    dataset_rows.append(row)
+
+# Create Hugging Face dataset and push to Hub
+
+hf_dataset = Dataset.from_list(dataset_rows)
+hf_dataset.push_to_hub(repo_id=args.dataset_repo_id)
 ```
 
 ## Fine-tune
